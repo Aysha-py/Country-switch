@@ -1,0 +1,53 @@
+.cardComponent{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    padding: 2em;
+}
+.card{
+    color: white;
+    border-radius: 16px;
+    background: hsl(207, 26%, 17%);
+    box-shadow:  0px 0px 10px 0px rgba(1, 6, 34, 0.85);
+}
+.cardL{
+    color: white;
+    border-radius: 16px;
+    background: white;
+    box-shadow:  0px 0px 10px 0px rgba(1, 6, 34, 0.55);
+}
+.cardtxtLightMode{
+    padding: 2em;
+    background-color: white;
+    color: black;
+}
+.flag{
+    height: 30vh;
+}
+
+.card img{
+    width: 100%;
+    border-radius: 16px 16px 0px 0px;
+
+} 
+.cardL img{
+    width: 100%;
+    border-radius: 16px 16px 0px 0px;
+
+} 
+.card-txt{
+    padding: 2em;
+}
+@media screen and (max-width: 920px) {
+.cardComponent{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 2em;
+    
+}
+.flag{
+    height:25vh;
+
+}
+
+}
