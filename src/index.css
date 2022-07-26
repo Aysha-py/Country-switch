@@ -4,9 +4,7 @@
  
   
 }
-html{
-  max-width: 1440px;
-}
+
 
 
 @import url(./style/Navbar.css);

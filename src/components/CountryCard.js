@@ -1,11 +1,10 @@
-import React, {useState,useEffect}from 'react'
+import React, {useEffect}from 'react'
 import CountryApi from '../api/CountryApi';
 
 
-const CountryCard = ({cardLight,cardd}) => {
-  const [countries,setCountries]= useState([])
- 
-
+const CountryCard = ({cardLight,cardd,countries,setCountries}) => {
+  
+  
   useEffect(() => {
     const retrieveCountries = async()=>{
 
@@ -13,8 +12,11 @@ const CountryCard = ({cardLight,cardd}) => {
       setCountries(response.data)
     }
     retrieveCountries();
-  }, [])
+  }, [setCountries])
   
+ 
+  
+
   
 
   

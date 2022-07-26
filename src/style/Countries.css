@@ -1,8 +1,8 @@
 .countries-container{
     background-color: hsl(207, 26%, 17%);
-    width: 80%;
-    margin:30px auto;
     border-radius: 5px;
+    margin:auto;
+    max-width: 1440px;
 }
 .countries-container-header{
     display: flex;
@@ -11,9 +11,9 @@
 }
 .countries-container-lightMode{
     background-color: hsl(0, 0%, 98%);
-    width: 80%;
-    margin:30px auto;
     border-radius: 5px;
+    margin:auto;
+    max-width: 1440px;
 }
 .searchbar {
    
@@ -34,6 +34,7 @@
 }
 .searchbar-lightmode input{
     border: none;
+    outline: none;
 }
 .searchbar input{
     border: none;
@@ -50,6 +51,9 @@
     background-color: hsl(209, 23%, 22%);
     color: white;
     margin-right: 20px;
+}
+.listitem ul, .listitemLight ul{
+    list-style: none;
 }
 .filter input{
     outline: none;
@@ -70,6 +74,30 @@
 .filter-light input{
     border: none;
     outline: none;
+}
+.listitem{
+    border-radius: 8px;
+    padding: 10px 30px 5px 10px;
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+    position: absolute;
+    width: 140px;
+    margin-top:10px ;
+   
+
+}
+.listitemLight{
+    border-radius: 8px;
+    padding: 10px 30px 5px 10px;
+    background-color: white;
+    color: black;
+    position: absolute;
+    width: 140px;
+    margin-top:10px;
+}
+.listitem li, .listitemLight li{
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 @media screen and (max-width: 920px) {
     .countries-container-header{
