@@ -1,149 +1,119 @@
 import React,{useState,useEffect} from 'react'
 import { AiOutlineSearch } from 'react-icons/ai';
-import { MdKeyboardArrowDown } from 'react-icons/md';
 import CountryCard from '../components/CountryCard';
 import { BsMoon } from 'react-icons/bs';
 import { BsMoonFill } from 'react-icons/bs';
-import { BiArrowBack } from 'react-icons/bi';
-import Details from '../components/Details';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 
 
 const Countries = ({countries,setCountries}) => {
 
-  const searchKeyword = ["Africa","America","Asia","Europe","Oceania"]
-
   const [navLight,setNavLight] = useState(false)
-  const [containerLight,setcontainerLight] = useState(false)
-  const [searchBarLight,setsearchBarLight] = useState(false)
-  const [filterLight,setFilterLight] = useState(false)
-  const [buttonStyle,setButtonStyle] = useState(false)
-  const [cardLight,setCardLight]= useState(false)
-  const [cardd,setCardd]= useState(false)
-  const [displayList,setDisplayList] = useState(false)
-  const[listLight,setListLight]=useState(false)
   const [searchdata,setsearchData] = useState("")
   const [details,setDetails] =  useState(true)
   const [newsearch, setNewsearch] = useState("");
   const [information,setInformation]=useState([])
 
-  
-  console.log(countries)
 
   const switchMode =()=>{
-    setcontainerLight (!containerLight)
     setNavLight(!navLight)
-    setButtonStyle(!buttonStyle)
-    setsearchBarLight(!searchBarLight)
-    setFilterLight(!filterLight)
-    setCardLight(!filterLight)
-    setCardd(!cardd)
-    setListLight(!listLight)
-    
   }
-
-const displayfilterlist =()=>{
-  setDisplayList(!displayList)
-}
 
 const displaypage=() =>{
   setDetails(true)
-  console.log("hello")
-}
 
+}
 useEffect(() => {
-  const result = countries.filter((info) =>
-  info?.name?.toLowerCase()?.includes(newsearch)
+  const result = countries?.filter((info) =>
+  info?.region?.includes(newsearch)
+
   );
-  console.log(result)
   setInformation(result);
   }, [newsearch,countries]);
 
- 
+  useEffect(() => {
+    const result = countries?.filter((info) =>
+    info?.region?.includes(searchdata)
+  
+    );
+    setInformation(result);
+    }, [searchdata,countries]);
+
   return (
-    <>{details ?
-    <div className={containerLight ? 'countries-container-lightMode' : 'countries-container'}>
+    <>
+    <div className={navLight ? 'countries-container-lightMode' : 'countries-container'}>
       <div className ={navLight?'nav-tab-lightmode':'nav-tab'}>
           <h1>Where in the world?</h1>
-          {buttonStyle?<button onClick={switchMode}>
+          {navLight?<button onClick={switchMode}>
           <BsMoonFill style={{color:"Black", marginRight:"10px"}}/>Dark Mode</button>: <button onClick={switchMode}>
           <BsMoon style={{color:"white", marginRight:"10px"}}/>Dark Mode</button>
         }
       </div>
+      
 
 
-      <div className='countries-container-header'>
-      <div className={searchBarLight ? 'searchbar-lightmode' : 'searchbar'}>
-          <AiOutlineSearch />
-          <input type="text" 
-          placeholder="Search for a Country"
-          value={newsearch}
-          onChange={(e) => setNewsearch(e.target.value)}
-          />
-      </div> 
-    <div className='filter-continer'> 
-      {filterLight ?
-        <div className='filter-light' >
-          <input type="text" placeholder="Filter By Region"/>
-          <MdKeyboardArrowDown onClick={displayfilterlist} style={{color:"black"}}/> 
-            
-        </div>
-
-        :
-
-        <div className='filter'>
-          <input type="text" 
-          placeholder="Filter By Region"
+      {details ? <div className='countries-container-header'>
+        <div className={navLight ? 'searchbar-lightmode' : 'searchbar'}>
+            <AiOutlineSearch />
+            <input type="text" 
+            placeholder="Search for a Country"
+            defaultValue={newsearch}
+            onChange={(e) => setNewsearch(e.target.value)}
+            />
+        </div> 
+        <div className='filter-continer'> 
+        {navLight ?
+          <div className='filter-light' >
+          <select
           value={searchdata}
-          />
-          <MdKeyboardArrowDown onClick={displayfilterlist} style={{color:"white"}}/>
+          onChange={(e) => setsearchData(e.target.value)}>
+          <option value=""></option>
+            <option value="Africa">Africa</option>
+            <option value="America">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          
+        </select>
+              
+          </div>
+
+          :
+
+          <div className='filter'>
+          {information &&
+
+          <select
+          value={searchdata}
+          onChange={(e) => setsearchData(e.target.value)}>
+          <option value=""></option>
+            <option value="Africa">Africa</option>
+            <option value="America">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          
+        </select>
+          }
+           
           
         </div> 
       }
-      {displayList ? <div className={listLight ?'listitemLight':'listitem'}>
-              <ul>
-              { 
-                searchKeyword.map((keyword,index)=>(
-                  <li key ={index} onClick={()=>{
-                    setsearchData(keyword)
-                    setDisplayList(false)
-                  }}>{keyword}</li>
-                ))
-               
-              }
-              </ul>
-            </div>:null
-      }   
-    </div>        
-    </div>    
-    <CountryCard cardLight={cardLight} cardd={cardd} countries={countries} 
+    
+    </div>
+             
+    </div>: null}
+    <CountryCard navLight={navLight} countries={countries} 
     setCountries={setCountries} setDetails={setDetails} details={details} 
-    information={information}/>
+    information={information} switchMode={switchMode} displaypage={displaypage} />
       
-    </div>:
-    
-    
-    <div className={containerLight ? 'countries-container-lightMode' : 'countries-container'}>
-      <div className ={navLight?'nav-tab-lightmode':'nav-tab'}>
-          <h1>Where in the world?</h1>
-          {buttonStyle?<button onClick={switchMode}>
-          <BsMoonFill style={{color:"Black", marginRight:"10px"}}/>Dark Mode</button>: <button onClick={switchMode}>
-          <BsMoon style={{color:"white", marginRight:"10px"}}/>Dark Mode</button>
-        }
-      </div>
-
-      <div className='countries-container-header'>
-        <div className={searchBarLight ? 'details-searchbar-lightmode' : 'details-searchbar'} onClick={displaypage}>
-            <button><BiArrowBack style={{marginRight:"10px"}}/>Back</button>
-        </div> 
-      </div>
-      
-      <Details countries={countries} cardLight={cardLight} cardd={cardd} setCountries={setCountries}/>
     </div>
   
   
+
   
-  }
     </>
   )
 }
