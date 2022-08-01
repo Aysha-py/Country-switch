@@ -13,9 +13,9 @@ const Details = ({informations,navLight,setCountries}) => {
   console.log(informations) 
     
   return (
-    
+    <main> 
   <div className={navLight?'cardComponent-detailsLight':'cardComponent-details'}>
-    <main>
+    
     {
       informations?.map((info,index)=>(
               
@@ -60,9 +60,9 @@ const Details = ({informations,navLight,setCountries}) => {
     </div>
   ))
     }
-    </main>
+  
 </div>
-   
+</main>
 
   )
 }
