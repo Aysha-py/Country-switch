@@ -1,13 +1,6 @@
 import React,{useEffect} from 'react'
 
-        
-
-
-
 const Details = ({informations,navLight,setCountries}) => {
-
-
-  
 
   useEffect(() => {
     fetch('https://restcountries.com/v2/all')
@@ -22,8 +15,6 @@ const Details = ({informations,navLight,setCountries}) => {
   return (
     
   <div className={navLight?'cardComponent-detailsLight':'cardComponent-details'}>
-
-
 
     {
       informations?.map((info,index)=>(

@@ -6,8 +6,9 @@ import { BiArrowBack } from 'react-icons/bi';
 
 
 
+
 const CountryCard = ({countries,setCountries,setDetails,details,
-  information,navLight,switchMode,buttonStyle,displaypage}) => {
+  information,navLight,displaypage,loading,setLoading}) => {
 const [index,setIndex] = useState("")
 const [error,setError]= useState("")
 
@@ -15,9 +16,11 @@ const [error,setError]= useState("")
 
 useEffect(() => {
   fetch('https://restcountries.com/v2/all?')
+
      .then((response) => response.json())
      .then((data) => {
         setCountries(data);
+        setLoading(!loading);
      })
      .catch((err) => {
       setError(err);
@@ -41,6 +44,8 @@ const done =() =>{
 
   return (
     <>
+    
+   
     {error?  
     <div className='error-alert'>
         Oh snap! You got an error!
@@ -84,12 +89,14 @@ const done =() =>{
           </div> 
         </div>
         
-        <Details countries={countries} navLight={navLight} setCountries={setCountries} informations={informations}/>
+          <Details countries={countries} 
+            navLight={navLight} 
+            setCountries={setCountries} 
+            informations={informations}
+          />
       </div>
-        
-        
       }
-        </>
+      </>
    
   )
 }

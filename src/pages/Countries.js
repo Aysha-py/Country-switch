@@ -3,9 +3,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import CountryCard from '../components/CountryCard';
 import { BsMoon } from 'react-icons/bs';
 import { BsMoonFill } from 'react-icons/bs';
-import Spinner from 'react-bootstrap/Spinner';
-
-
+import BarLoader from 'react-bar-loader'
 
 
 const Countries = ({countries,setCountries}) => {
@@ -15,11 +13,24 @@ const Countries = ({countries,setCountries}) => {
   const [details,setDetails] =  useState(true)
   const [newsearch, setNewsearch] = useState("");
   const [information,setInformation]=useState([])
+  const [loading,setLoading] = useState(true)
 
 
   const switchMode =()=>{
     setNavLight(!navLight)
   }
+
+  useEffect(() => {
+  // localStorage.getItem("App state",navLight)
+  console.log('app state', navLight)
+  window.localStorage.setItem('MY_APP_STATE', JSON.stringify(navLight));
+
+}, [navLight])
+useEffect(() => {
+  const data = window.localStorage.getItem('MY_APP_STATE');
+  if ( data !== false ) setNavLight(JSON.parse(data));
+}, []);
+
 
 const displaypage=() =>{
   setDetails(true)
@@ -50,7 +61,9 @@ useEffect(() => {
           <BsMoonFill style={{color:"Black", marginRight:"10px"}}/>Dark Mode</button>: <button onClick={switchMode}>
           <BsMoon style={{color:"white", marginRight:"10px"}}/>Dark Mode</button>
         }
+       
       </div>
+      {loading? <BarLoader color="#1D8BF1" height="4" className="loader"/>:null }
       
 
 
@@ -63,43 +76,39 @@ useEffect(() => {
             onChange={(e) => setNewsearch(e.target.value)}
             />
         </div> 
-        <div className='filter-continer'> 
+        <div className='filter-container'> 
         {navLight ?
           <div className='filter-light' >
-          <select
-          value={searchdata}
-          onChange={(e) => setsearchData(e.target.value)}>
-          <option value=""></option>
-            <option value="Africa">Africa</option>
-            <option value="America">America</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="Oceania">Oceania</option>
-          
-        </select>
-              
+            <select
+              defaultvalue={searchdata}
+              onChange={(e) => setsearchData(e.target.value)}>
+              <option value="" disabled selected>Filter By Region</option>
+                <option value="Africa">Africa</option>
+                <option value="America">America</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Oceania">Oceania</option>
+            
+            </select>  
           </div>
-
           :
-
           <div className='filter'>
-          {information &&
+            {information &&
 
-          <select
-          value={searchdata}
-          onChange={(e) => setsearchData(e.target.value)}>
-          <option value=""></option>
-            <option value="Africa">Africa</option>
-            <option value="America">America</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="Oceania">Oceania</option>
-          
-        </select>
-          }
-           
-          
-        </div> 
+              <select
+              value={searchdata}
+              onChange={(e) => setsearchData(e.target.value)}>
+              
+              <option value="" disabled selected>Filter By Region</option>
+                <option value="Africa">Africa</option>
+                <option value="America">America</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Oceania">Oceania</option>
+              
+              </select>
+            }
+          </div> 
       }
     
     </div>
@@ -107,14 +116,15 @@ useEffect(() => {
     </div>: null}
     <CountryCard navLight={navLight} countries={countries} 
     setCountries={setCountries} setDetails={setDetails} details={details} 
-    information={information} switchMode={switchMode} displaypage={displaypage} />
+    information={information} switchMode={switchMode} displaypage={displaypage} 
+    loading={loading} setLoading={setLoading}/>
       
-    </div>
+  </div>
   
   
 
   
-    </>
+  </>
   )
 }
 
