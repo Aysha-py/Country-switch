@@ -8,7 +8,7 @@ import BarLoader from 'react-bar-loader'
 
 const Countries = ({countries,setCountries}) => {
 
-  const [navLight,setNavLight] = useState(false)
+  const [navLight,setNavLight] = useState(true)
   const [searchdata,setsearchData] = useState("")
   const [details,setDetails] =  useState(true)
   const [newsearch, setNewsearch] = useState("");
