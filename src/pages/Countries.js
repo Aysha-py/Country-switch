@@ -53,7 +53,7 @@ useEffect(() => {
     }, [searchdata,countries]);
 
   return (
-    <>
+    <main>
     <div className={navLight ? 'countries-container-lightMode' : 'countries-container'}>
       <div className ={navLight?'nav-tab-lightmode':'nav-tab'}>
           <h1>Where in the world?</h1>
@@ -124,7 +124,7 @@ useEffect(() => {
   
 
   
-  </>
+  </main>
   )
 }
 

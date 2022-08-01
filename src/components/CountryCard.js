@@ -43,7 +43,7 @@ const done =() =>{
 }
 
   return (
-    <>
+    <main>
     
    
     {error?  
@@ -96,7 +96,7 @@ const done =() =>{
           />
       </div>
       }
-      </>
+      </main>
    
   )
 }
