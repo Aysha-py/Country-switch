@@ -96,11 +96,7 @@ const done =() =>{
           />
       </div>
       }
-      <footer>
-        <p class="cp-text">
-          Challenge by frontendmentor.io. <span style={{color:"green"}}>Coded By </span>Aysha Muhammed
-        </p>
-      </footer>
+     
       </main>
       
 

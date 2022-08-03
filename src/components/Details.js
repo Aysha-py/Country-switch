@@ -45,13 +45,15 @@ const Details = ({informations,navLight,setCountries}) => {
               </div>
             </div>
           </div>
-          <div className='border'>
-          <p>Border Countries: </p>
-          {info?.borders?.map((border,i)=>(
-            <p key={i} style={{marginLeft:"10px"}}>{border}</p>
-          )
-          )
-          }
+          <div className='border' id="detilborder">
+            <p>Border Countries: </p>
+            <div className='borderlist__list'>
+            {info?.borders?.map((border,i)=>(
+              <p key={i} style={{marginLeft:"10px"}} className="borderlist">{border}</p>
+            )
+            )
+            }
+            </div>
         </div>
       </div>
                 

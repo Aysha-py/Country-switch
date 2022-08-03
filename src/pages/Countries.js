@@ -15,7 +15,7 @@ const Countries = ({countries,setCountries}) => {
   const [information,setInformation]=useState([])
   const [loading,setLoading] = useState(true)
 
-
+console.log(countries)
   const switchMode =()=>{
     setNavLight(!navLight)
   }

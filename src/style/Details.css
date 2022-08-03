@@ -24,6 +24,12 @@
 }
 .border{
     display: flex;
+    padding: 10px;
+   
+}
+.borderlist{
+    padding: 0 30px;
+    box-shadow:  0px 0px 10px 0px rgba(1, 6, 34, 0.35);
 }
 .detailflag img{
     width:100%;
@@ -32,13 +38,27 @@
 .detailflag{
     width: 40%;
 }
+.borderlist__list{
+    display: flex;
+}
+
+
 @media screen and (max-width: 920px) {
+    .cardComponent-details{
+ width: 100%;
+    }
     .card__details,.cardL__details{
-        display: grid;
+        display: flex;
+        flex-direction: column;
         padding: 0;
         line-height:2;
         height: auto;
-    }.detailflag {
+    }
+    .extra-details{
+        display: flex;
+        flex-direction: column;
+    }
+    .detailflag {
         margin-left: 25px;
     }
     .detailflag img{
@@ -47,9 +67,25 @@
     }
     .more-details,.moreL-details{
         margin-left: 0;
-        padding: 2em;
-        
+        padding: 1em;
+    }
+    .borderlist{
+        padding: 0 5px;
        
+    }
+    .borderlist__list{
+        display: flex;
+        margin-top: 20px;
+        padding: 0;
+        margin: 0;
+    }
+    #detilborder{
+        display: flex;
+        flex-direction: column;
+    }
+    .border{
+        padding: 0;
+        margin-top: 20px;
     }
 }
     
